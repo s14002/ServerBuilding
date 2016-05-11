@@ -23,6 +23,18 @@
 
 >sudo vi /etc/sysconfig/network-script/ifcfg-enp0s3
 
-中身の
+で中身のBOOTPROTO=dhcpのdhcpをnoneに変えた。そして、ONBOOT=noのnoをyesに変えた。
+
+>sudo vi /etc/sysconfig/network-script/ifcfg-enp0s8
+
+で中身のONBOOT=noのnoをyesに変えた。
+
+>ip addr
+
+でIPアドレスを確認してメモ。
 
 #### SSH接続の確認
+* Ubuntuからsshで仮想マシンに接続
+
+>ssh 学籍番号@メモしたIPアドレス
+
