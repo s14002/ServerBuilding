@@ -21,9 +21,7 @@
 #### ネットワークアダプター1/2へのIPアドレスの設定とssh接続の確認
 * /etc/sysconfig/network-scriptにifcfg-enp0s?というファイルがあるので、 そのファイルを編集してネットワーク接続ができるように設定します。
 
-'''
-sudo vi /etc/sysconfig/network-script/ifcfg-enp0s3
-'''
+>sudo vi /etc/sysconfig/network-script/ifcfg-enp0s3
 
 中身の
 
