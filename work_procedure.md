@@ -29,6 +29,10 @@
 
 で中身のONBOOT=noのnoをyesに変えた。
 
+>$sudo /etc/sysconfig/network-script/ifup enp0s3
+
+>$sudo /etc/sysconfig/network-script/ifup enp0s8
+
 >$ip addr
 
 でIPアドレスを確認してメモ。
@@ -71,11 +75,55 @@ Wordpressを動作させるためには下記のソフトウェアが必要に�
 >$sudo yum install httpd
 
 * MySQLのインストール
-Mysqlあったら消す
+MariaDBがあったら消す
+
+> yum list installed | grep maria
+
+あった場合アンインストール
+
+> yum -y remove mariadb-libs
+
+* MySQL公式リポジトリファイルをインストール
+
+> yum -y install http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+
+* MySQLインストール
+
+> yum -y install mysql
+
+> yum -y install mysql-devel
+
+> yum -y install mysql-server
+
+> yum -y install mysql-utilities
+
+* mysqlデーモンの起動
+
+> service mysqld start
+
+* DB初期設定
+
+> /usr/bin/mysql_secure_installation
+
 * PHPのインストール
 
+> yum install php
+
+> yum install php-mbstring
+
 * Wordpressのインストール
+
+* やり方その1
 [wordpressの公式サイト](https://wordpress.org/)からUbuntuに入れて展開したディレクトリをscpコマンドで仮想マシンに移動する。
 
 >$scp -r コピー元のディレクトリ ホームディレクトリ@IPアドレス(またはホスト名):~/(コピー先ディレクトリ)
+
+* やり方その2
+wgetを使って、自分のサーバーへ直接WordPressをダウンロードする。
+
+> wget http://wordpress.org/latest.tar.gz
+
+次に、使用するパッケージを展開
+
+> tar -xzvf latest.tar.gz
 
