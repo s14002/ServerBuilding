@@ -19,6 +19,7 @@
 * インストール中、root以外の作業用(管理者)のユーザーを作成。
 
 #### ネットワークアダプター1/2へのIPアドレスの設定とssh接続の確認
+
 * /etc/sysconfig/network-scriptにifcfg-enp0s?というファイルがあるので、 そのファイルを編集してネットワーク接続ができるように設定します。
 
 `$sudo vi /etc/sysconfig/network-script/ifcfg-enp0s3`
@@ -38,11 +39,13 @@
 でIPアドレスを確認してメモ。
 
 #### SSH接続の確認
+
 * Ubuntuからsshで仮想マシンに接続
 
 `$ssh 学籍番号@メモしたIPアドレス`
 
 ####インストール後の設定
+
 * dconf-editerでProxyを設定
 * /etc/yum.confにProxy=http://IPアドレス:8888を追加
 
@@ -106,11 +109,13 @@ MariaDBがあったら消す
 * Wordpressのインストール
 
 * やり方その1
+
 [wordpressの公式サイト](https://wordpress.org/)からUbuntuに入れて展開したディレクトリをscpコマンドで仮想マシンに移動する。
 
 `$scp -r コピー元のディレクトリ ホームディレクトリ@IPアドレス(またはホスト名):~/(コピー先ディレクトリ)`
 
 * やり方その2
+
 wgetを使って、自分のサーバーへ直接WordPressをダウンロードする。
 
 `$wget http://wordpress.org/latest.tar.gz`
@@ -134,6 +139,7 @@ wgetを使って、自分のサーバーへ直接WordPressをダウンロード�
 `mysql> EXIT`
 
 * wp-config.phpの設定
+
 展開したWordPressのパッケージへ移動して、`wp-config-sample.php`のファイル名を`wp-config.php`に変更するか、コピーする。
 
 `cp wp-config-sample.php wp-config.php`
