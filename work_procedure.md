@@ -21,38 +21,38 @@
 #### ネットワークアダプター1/2へのIPアドレスの設定とssh接続の確認
 * /etc/sysconfig/network-scriptにifcfg-enp0s?というファイルがあるので、 そのファイルを編集してネットワーク接続ができるように設定します。
 
->$sudo vi /etc/sysconfig/network-script/ifcfg-enp0s3
+`$sudo vi /etc/sysconfig/network-script/ifcfg-enp0s3`
 
 で中身のONBOOT=noのnoをyesに変えた。
 
->$sudo vi /etc/sysconfig/network-script/ifcfg-enp0s8
+`$sudo vi /etc/sysconfig/network-script/ifcfg-enp0s8`
 
 で中身のONBOOT=noのnoをyesに変えた。
 
->$sudo /etc/sysconfig/network-script/ifup enp0s3
+`$sudo /etc/sysconfig/network-script/ifup enp0s3`
 
->$sudo /etc/sysconfig/network-script/ifup enp0s8
+`$sudo /etc/sysconfig/network-script/ifup enp0s8`
 
->$ip addr
+`$ip addr`
 
 でIPアドレスを確認してメモ。
 
 #### SSH接続の確認
 * Ubuntuからsshで仮想マシンに接続
 
->$ssh 学籍番号@メモしたIPアドレス
+`$ssh 学籍番号@メモしたIPアドレス`
 
 ####インストール後の設定
 * dconf-editerでProxyを設定
 * /etc/yum.confにProxy=http://IPアドレス:8888を追加
 
->$sudo vi /etc/yum.conf
+`$sudo vi /etc/yum.conf`
 
 ####アップデート
 
->$sudo yum update
+`$sudo yum update`
 
->$sudo yum install wget
+`$sudo yum install wget`
 
 ### Wordpressを動かす(1)
 
@@ -64,59 +64,59 @@ Wordpressを動作させるためには下記のソフトウェアが必要に�
 
 * Apache HTTP Serverのインストール
 
->$sudo yum install httpd
+`$sudo yum install httpd`
 
 * MySQLのインストール
 MariaDBがあったら消す
 
-> yum list installed | grep maria
+`$yum list installed | grep mariai`
 
 あった場合アンインストール
 
-> yum -y remove mariadb-libs
+`$yum -y remove mariadb-libs`
 
 * MySQL公式リポジトリファイルをインストール
 
-> yum -y install http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+`$yum -y install http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm`
 
 * MySQLインストール
 
-> yum -y install mysql
+`$yum -y install mysql`
 
-> yum -y install mysql-devel
+`$yum -y install mysql-devel`
 
-> yum -y install mysql-server
+`$yum -y install mysql-server`
 
-> yum -y install mysql-utilities
+`$yum -y install mysql-utilities`
 
 * mysqlデーモンの起動
 
-> service mysqld start
+`$service mysqld start`
 
 * DB初期設定
 
-> /usr/bin/mysql_secure_installation
+`$/usr/bin/mysql_secure_installation`
 
 * PHPのインストール
 
-> yum install php
+`$yum install php`
 
-> yum install php-mbstring
+`$yum install php-mbstring`
 
 * Wordpressのインストール
 
 * やり方その1
 [wordpressの公式サイト](https://wordpress.org/)からUbuntuに入れて展開したディレクトリをscpコマンドで仮想マシンに移動する。
 
->$scp -r コピー元のディレクトリ ホームディレクトリ@IPアドレス(またはホスト名):~/(コピー先ディレクトリ)
+`$scp -r コピー元のディレクトリ ホームディレクトリ@IPアドレス(またはホスト名):~/(コピー先ディレクトリ)`
 
 * やり方その2
 wgetを使って、自分のサーバーへ直接WordPressをダウンロードする。
 
-> wget http://wordpress.org/latest.tar.gz
+`$wget http://wordpress.org/latest.tar.gz`
 
 次に、使用するパッケージを展開
 
-`tar -xzvf latest.tar.gz`
+`$tar -xzvf latest.tar.gz`
 
 
