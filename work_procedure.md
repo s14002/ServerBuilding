@@ -119,4 +119,22 @@ wgetを使って、自分のサーバーへ直接WordPressをダウンロード�
 
 `$tar -xzvf latest.tar.gz`
 
+* MySQLクライアントの利用
 
+`$ mysql -u root -p`
+`mysql> CREATE DATABASE databasename;`
+`mysql> GRANT ALL PRIVILEGES ON databasename.* TO "wordpressusername"@"hostname"`
+`->IDENTIFIED BY "password";`
+`mysql> FLUSH PRIVILEGES;`
+`mysql> EXIT`
+
+* wp-config.phpの設定
+展開したWordPressのパッケージへ移動して、`wp-config-sample.php`のファイル名を`wp-config.php`に変更するか、コピーする。
+`cp wp-config-sample.php wp-config.php`
+`wp-config.php`にデータベースのデータを入力する。
+認証用ユニークキーをオンラインジェネレーターで作成し値を入力する。
+
+* /etc/httpd/httpd.confを編集する
+
+* WordPressのインストール
+ブラウザのURLに192.168.56.101/wp-admin/install.phpを入力してWordpressをインストールしてユーザー名とパスワードを入力してログイン
