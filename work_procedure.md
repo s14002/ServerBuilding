@@ -23,7 +23,7 @@
 
 >$sudo vi /etc/sysconfig/network-script/ifcfg-enp0s3
 
-で中身のBOOTPROTO=dhcpのdhcpをnoneに変えた。そして、ONBOOT=noのnoをyesに変えた。
+で中身のONBOOT=noのnoをyesに変えた。
 
 >$sudo vi /etc/sysconfig/network-script/ifcfg-enp0s8
 
@@ -47,14 +47,6 @@
 * /etc/yum.confにProxy=http://IPアドレス:8888を追加
 
 >$sudo vi /etc/yum.conf
-
-設定してyum updateやyum install wget したけど"ネットワークに届きません"ってエラー出たり、yumのmirrorsiteでエラーって出たから/etc/yum.repos.d/Centos-base.repoをイジイジしてsudo yum clean allしたりしてた。
-
->$sudo vi /etc/yum.repos.d/CentOS-Base.repo
-
->$reboot
-
-* rebootかけたら最初からいけたかもしれないorz
 
 ####アップデート
 
@@ -125,5 +117,6 @@ wgetを使って、自分のサーバーへ直接WordPressをダウンロード�
 
 次に、使用するパッケージを展開
 
-> tar -xzvf latest.tar.gz
+`tar -xzvf latest.tar.gz`
+
 
