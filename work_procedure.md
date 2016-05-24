@@ -121,11 +121,16 @@ wgetを使って、自分のサーバーへ直接WordPressをダウンロード�
 
 * MySQLクライアントの利用
 
--`$ mysql -u root -p`
--`mysql> CREATE DATABASE databasename;`
+`$ mysql -u root -p`
+
+`mysql> CREATE DATABASE databasename;`
+
 `mysql> GRANT ALL PRIVILEGES ON databasename.* TO "wordpressusername"@"hostname"`
+
 `->IDENTIFIED BY "password";`
+
 `mysql> FLUSH PRIVILEGES;`
+
 `mysql> EXIT`
 
 * wp-config.phpの設定
@@ -138,4 +143,4 @@ wgetを使って、自分のサーバーへ直接WordPressをダウンロード�
 
 * WordPressのインストール
 
--ブラウザのURLに192.168.56.101/wp-admin/install.phpを入力してWordpressをインストールしてユーザー名とパスワードを入力してログイン
+ブラウザのURLに192.168.56.101/wp-admin/install.phpを入力してWordpressをインストールしてユーザー名とパスワードを入力してログイン
