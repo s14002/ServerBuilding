@@ -135,12 +135,15 @@ wgetを使って、自分のサーバーへ直接WordPressをダウンロード�
 
 * wp-config.phpの設定
 展開したWordPressのパッケージへ移動して、`wp-config-sample.php`のファイル名を`wp-config.php`に変更するか、コピーする。
+
 `cp wp-config-sample.php wp-config.php`
+
 `wp-config.php`にデータベースのデータを入力する。
+
 認証用ユニークキーをオンラインジェネレーターで作成し値を入力する。
 
 * /etc/httpd/httpd.confを編集する
 
 * WordPressのインストール
 
-ブラウザのURLに192.168.56.101/wp-admin/install.phpを入力してWordpressをインストールしてユーザー名とパスワードを入力してログイン
+ブラウザのURLに192.168.56.101/wp-admin/install.phpを入力してWordpressをインストールする、ユーザー名とパスワードを入力してログイン
