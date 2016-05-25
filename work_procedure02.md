@@ -34,7 +34,7 @@ viでVagrantfileを開き、
 
 Oracle_VM_VirtualBox_Extension_Pack-5.0.20-106931.vbox-extpack
 
-がダウンロードが始まるのでそれをダウンロードしたら、
+のダウンロードが始まるのでそれをダウンロードしたら、
 
 Virtualboxのファイル>環境変数>機能拡張の設定から
 
@@ -81,4 +81,92 @@ Vagrantfileで変更した設定を反映させるには
 
 # 2-2 WordPressを動かす(2)
 
-1-2
+yum使えるように設定する。
+
+`sudo vi /etc/yum.conf`のどこかに`proxy=http://Proxyサーバーアドレス:ポート番号`
+
+を入力して`sudo yum update`でアップデートする。
+
+`sudo yum -y install epel-release`でepelリポジトリインストール
+
+`sudo vi /etc/yum.repos.d/epel.repo`で「--enablerepo」で指定しなければ「epel」リポジトリを使えない設定にしておく。
+
+[epel]部分の「enabled=1」を「enabled=0」に変更。
+
+### nginxインストール
+`sudo yum install --enablerepo=epel nginx`
+
+### phpのインストール
+`sudo yum -y install --enablerepo=remi,remi-php70 php php-devel php-mbstring php-pdo php-gd php-mysql php-pear php-fpm php-mcrypt`
+
+ついでに、php-fpmもインストール
+
+### /etc/php-fpm.d/www.confの編集
+apacheになってるところをnginxに変更
+
+```user = nginx
+  grounp = nginx
+```
+
+### php-fpmの起動をサービス化
+起動
+
+`sudo service php-fpm start`
+
+サービス化
+
+`sudo chkconfig php-fpm on`
+
+### MariaDBのインストール
+`sudo yum -y install mariadb mariadb-server`でインストール
+
+`sudo rpm -qa | grep maria`で確認
+
+### MariaDBの有効化と起動
+
+`sudo systemctl enable mariadb-service`で有効にする。
+
+`sudo systemctl start mariadb-service`で起動
+
+### MariaDBの初期設定
+`mysql_secure_installation`
+
+とりあえずMariaDBを再起動
+
+`sudo systemctl restart mariadb`
+
+### MariaDBクライアントの利用
+
+`$ mysql -u root -p`
+
+`MariaDB> CREATE DATABASE databasename;`
+
+`GRANT ALL PRIVILEGES ON databasename.* TO "username"@"hostname" IDENTIFIED BY "password";`
+
+`FLUSH PRIVILEGES;`
+
+`exit`
+
+# Wordpressのダウンロード
+
+`wget http://wordpress.org/latest.tar.gz`でダウンロードしてくる
+
+`tar xzfv latest.tar.gz`で展開
+
+chownで所有者とグループをnginxに変える
+
+`sudo chown -R nginx:nginx wordpress`で変えたら
+
+wordpress/を/var/www/の下に移動させる
+
+`sudo mv wordpress/ /var/www/`
+
+### wp-confing.phpの設定ファイルを編集
+
+`cd /var/www/wordpress`
+
+`sudo cp wp-confing.sample.php wp-confing.php`でコピーしたwp-confing.phpを編集。MariaDBで作ったデータベースのデータを入力。
+
+認証用ユニークキーをオンラインジェネレーターで作成し値を入力する。
+
+
