@@ -104,10 +104,10 @@ yum使えるように設定する。
 ### /etc/php-fpm.d/www.confの編集
 apacheになってるところをnginxに変更
 
-'''
+''
   user = nginx
   grounp = nginx
-'''
+''
 
 
 ### php-fpmの起動をサービス化
