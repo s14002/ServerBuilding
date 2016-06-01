@@ -169,4 +169,22 @@ wordpress/を/var/www/の下に移動させる
 
 認証用ユニークキーをオンラインジェネレーターで作成し値を入力する。
 
+### default.confの中身を変更
+
+'vi /etc/nginx/conf.d/default.conf'
+
+'root /var/www/wordpress' に変更
+
+'fastcgi_param SCRIPT_FILENAME'と'$fastcgi_script_name'の間に'$document_root'を入力。
+
+変更したら'nginx -t'でチェックして
+
+nginxを再起動
+
+'sudo systemctl restart nginx'
+
+### Wordpress インストール
+
+ブラウザのURLに192.168.56.129/wp-admin/install.phpを入力してWordpressをインストールする。
+
 
