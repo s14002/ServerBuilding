@@ -173,17 +173,17 @@ wordpress/を/var/www/の下に移動させる
 
 ### default.confの中身を変更
 
-'vi /etc/nginx/conf.d/default.conf'
+vi /etc/nginx/conf.d/default.conf'
 
-'root /var/www/wordpress' に変更
+`root /var/www/wordpress` に変更
 
-'fastcgi_param SCRIPT_FILENAME'と'$fastcgi_script_name'の間に'$document_root'を入力。
+`fastcgi_param SCRIPT_FILENAME`と`$fastcgi_script_name`の間に`$document_root`を入力。
 
-変更したら'nginx -t'でチェックして
+変更したら`nginx -t`でチェックして
 
 nginxを再起動
 
-'sudo systemctl restart nginx'
+`sudo systemctl restart nginx`
 
 ### Wordpress インストール
 
@@ -197,22 +197,22 @@ nginxを再起動
 
 #### ダウンロード
 
-'wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/httpd/httpd-2.2.31.tar.gz'
+`wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/httpd/httpd-2.2.31.tar.gz`
 
 #### ビルド
 
 ソースファイルをコンパイルする前に、インストール対象となるシステム特有の機能
 情報をチェックし、チェック状況を記述したMakefileを作成する。
 
-'./configure'
+`./configure`
 
 ソースファイルのコンパイル
 
-'make'
+`make`
 
 #### インストール(インストールは一般的にrootユーザーにて行う。)
 
 (make で作成したファイルなどを任意のディレクトリにコピー)を行う。
 
-'sudo make install'
+`sudo make install`
 
