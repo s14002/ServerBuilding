@@ -173,7 +173,7 @@ wordpress/を/var/www/の下に移動させる
 
 ### default.confの中身を変更
 
-vi /etc/nginx/conf.d/default.conf'
+`vi /etc/nginx/conf.d/default.conf`
 
 `root /var/www/wordpress` に変更
 
@@ -199,14 +199,18 @@ nginxを再起動
 
 `wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/httpd/httpd-2.2.31.tar.gz`
 
-#### ビルド
+#### 展開
+
+`tar -xvf httpd-2.2.31.tar.gz`
+
+#### Makefileを作成
 
 ソースファイルをコンパイルする前に、インストール対象となるシステム特有の機能
 情報をチェックし、チェック状況を記述したMakefileを作成する。
 
 `./configure`
 
-ソースファイルのコンパイル
+#### ソースファイルのコンパイル
 
 `make`
 
@@ -216,3 +220,50 @@ nginxを再起動
 
 `sudo make install`
 
+### PHP7.0をダウンロード・インストール
+
+[参考サイト(http://docs.hatenablog.jp/entry/php7)]
+
+#### ダウンロード
+
+`$ wget http://jp2.php.net/get/php-7.0.0.tar.gz/from/this/mirror -O php-7.0.0.tar.gz`
+
+#### 展開
+
+`tar zxvf php-7.0.0.tar.gz`
+
+#### Makefileを作成
+
+`$ ./configure`
+
+#### ソースファイルのコンパイル
+
+`$ make`
+
+#### インストール
+
+`$ sudo make install`
+
+### Apacheの起動
+
+`sudo /usr/local/apache2/bin/apachectl start`
+
+### MariaDBのインストール
+`sudo rmp --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB`
+`sudo yum -y install mariadb mariadb-server mariadb-client mariadb-devel`
+`rpm -qa | grep maria`で確認
+`sudo rpm -e --nodeps mysql-libs`
+`sudo systemctl enable mariadb.service`
+`sudo systemctl startn mariadb.service`
+
+### MariaDBの初期設定
+
+`mysql_secure_installation`でrootのパスワードを設定する。
+
+### MariaDBでユーザー作成
+
+`mysql -u root -p
+create database databasename;
+grant all privileges on databasename.* to "username"@"localhost" identified by "password";
+flush privileges;
+exit;`
