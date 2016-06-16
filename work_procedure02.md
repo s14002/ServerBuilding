@@ -189,4 +189,30 @@ nginxを再起動
 
 ブラウザのURLに192.168.56.129/wp-admin/install.phpを入力してWordpressをインストールする。
 
+## 2-3 Wordpressを動かす(3)
+
+2-2とは別の作業ディレクトリを作る
+
+### Apache HTTP Server 2.2をダウンロード・コンパイル
+
+#### ダウンロード
+
+'wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/httpd/httpd-2.2.31.tar.gz'
+
+#### ビルド
+
+ソースファイルをコンパイルする前に、インストール対象となるシステム特有の機能
+情報をチェックし、チェック状況を記述したMakefileを作成する。
+
+'./configure'
+
+ソースファイルのコンパイル
+
+'make'
+
+#### インストール(インストールは一般的にrootユーザーにて行う。)
+
+(make で作成したファイルなどを任意のディレクトリにコピー)を行う。
+
+'sudo make install'
 

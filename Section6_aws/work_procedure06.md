@@ -17,7 +17,7 @@ AWS CLIの設定
 'aws configure
 AWS Access Key ID [None]: ********
 AWS Secret Access Key [None]: ********
-Default region name [None]: ap-northwest-2
+Default region name [None]: ap-northwest-1
 Default output format [None]: json
 '
 
