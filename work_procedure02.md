@@ -253,14 +253,52 @@ nginxを再起動
 `sudo systemctl enable mariadb.service`
 `sudo systemctl startn mariadb.service`
 
-### MariaDBの初期設定
+#### MariaDBの初期設定
 
 `mysql_secure_installation`でrootのパスワードを設定する。
 
-### MariaDBでユーザー作成
+#### MariaDBでユーザー作成
 
-`mysql -u root -p
-create database databasename;
-grant all privileges on databasename.* to "username"@"localhost" identified by "password";
-flush privileges;
-exit;`
+`mysql -u root -p`
+`create database databasename;`
+`grant all privileges on databasename.* to "username"@"localhost" identified by "password";`
+`flush privileges;`
+`exit;`
+
+### Wordpressのダウンロード・インストール
+
+#### ダウンロード
+
+`$ wget http://wordpress.org/latest.tar.gz`
+
+#### 展開・移動
+
+`$ tar -xvf latest.tar.gz`
+
+`$ mv latest.tar.gz /var/www/`に移動
+
+#### wp-confing.phpの設定ファイルを編集
+
+`cd /var/www/wordpress`
+
+`sudo cp wp-confing.sample.php wp-confing.php`でコピーしたwp-confing.phpを編集。MariaDBで作ったデータベースのデータを入力。
+
+認証用ユニークキーをオンラインジェネレーターで作成し値を入力する。
+
+### default.confの中身を変更
+
+`vi /etc/nginx/conf.d/default.conf`
+
+`root /var/www/wordpress`に変更
+
+`fastcgi_param SCRIPT_FILENAME`と`$fastcgi_script_name`の間に`$document_root`を入力。
+
+変更したら`nginx -t`でチェックして
+
+#### nginxを再起動
+
+`sudo systemctl restart nginx`
+
+### Wordpress インストール
+
+ブラウザのURLに192.168.56.130/wp-admin/install.phpを入力してWordpressをインストールする。
