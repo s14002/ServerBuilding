@@ -69,10 +69,7 @@ Virtualboxのファイル>環境変数>機能拡張の設定から
 
 `config.vm.box = "CentOS7"`の下に`config.vm.network "private_network", ip:"192.168.56.129"`
 
-※　複数台の仮想マシンを立ち上げる時には異なるIPアドレスを割り当てる必要があります。
-
-### Vagrantfileの反映
-
+※　複数台の仮想マシンを立ち上げる時には異なるIPアドレスを割り当てる必要があります。 ### Vagrantfileの反映
 Vagrantfileで変更した設定を反映させるには
 
 `vagrant reload`
@@ -222,7 +219,7 @@ nginxを再起動
 
 ### PHP7.0をダウンロード・インストール
 
-[参考サイト(http://docs.hatenablog.jp/entry/php7)]
+[参考サイト](http://docs.hatenablog.jp/entry/php7)
 
 #### ダウンロード
 
