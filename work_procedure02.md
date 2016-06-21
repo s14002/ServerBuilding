@@ -416,5 +416,4 @@ wgetでWP Super Cacheを取ってくる
 	unzip wp-super-cache.1.4.zip
 
 ブラウザからWordpressの192.168.56.130の結果は
-
 Page Speed Score: 66/100に変わった。(まさかの下がった)
