@@ -319,7 +319,7 @@ Ubuntuにabコマンドインストール
 
 	$ sudo apt install netatalk
 
-	$ ab -n 1000 -c 8  http://IPアドレス/
+	$ ab http://IPアドレス/
 
 	This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
 	Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -391,7 +391,24 @@ Ubuntuにabコマンドインストール
 ### PageSpeed
 Google Chromeに[PageSpeed](https://goo.gl/EA11zq)の拡張機能を入れる。
 自分のWordpressのページのDeveloper tools>PageSpeed>REFRESH RESULTSをクリックしてベンチマークを取る。
-結果はPage Speed Score: 77/100　でした。
+192.168.56.129の結果はPage Speed Score: 81/100 でした。
+192.168.56.130の結果はPage Speed Score: 77/100 でした。
+
 
 ## Wordpressの高速化
 
+### WP Super Cache導入
+
+vagrantのwordpressのpluginsに移動。
+
+	cd /usr/local/apache2/wordpress/wp-content/plugins/
+
+wgetでWP Super Cacheを取ってくる
+
+	wget -q http://downloads.wordpress.org/plugin/wp-super-cache.1.4.zip
+
+展開
+
+	unzip wp-super-cache.1.4.zip
+
+ブラウザからWordpressの192.168.56.130の結果は  Page Speed Score: 66/100に変わった。(まさかの下がった)
