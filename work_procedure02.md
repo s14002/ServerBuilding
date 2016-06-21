@@ -4,7 +4,7 @@
 
 ### Vagrant用CentOS boxをUSBストレージに用意してそこからコピーして登録して使う。
 
-`vagrant box add CentOS7 コピーしたboxファイル --force`
+	vagrant box add CentOS7 コピーしたboxファイル --force
 
 ### Vagrantの初期設定
 
@@ -12,15 +12,16 @@
 
 その作業用ディレクトリの中で初期設定をする。
 
-`vagrant init`というコマンドを実行してVagrantfileを作成。
+	vagrant init
+	というコマンドを実行してVagrantfileを作成。
 
 viでVagrantfileを開き、
 
-`config.vm.box = "base"`
+	config.vm.box = "base"
 
 の箇所を
 
-`config.vm.box = "CentOS7"`
+	config.vm.box = "CentOS7"
 
 に変える。
 
@@ -28,7 +29,7 @@ viでVagrantfileを開き、
 
 [VirtualBoxの公式サイトのダウンロードページ](https://www.virtualbox.org/wiki/Downloads)から
 
-> VirtualBox 5.0.20 Oracle VM VirtualBox Extension Pack  All supported platforms
+	VirtualBox 5.0.20 Oracle VM VirtualBox Extension Pack  All supported platforms
 
 のAll supported platformsをクリックすると、
 
@@ -42,37 +43,38 @@ Virtualboxのファイル>環境変数>機能拡張の設定から
 
 ターミナルに戻って仮想マシンを起動する。
 
-`vagrant up`
+	vagrant up
 
 ### 仮想マシンの停止
 
-`vagrant halt`
+	vagrant halt
 
 ### 仮想マシンの一時停止
 
-`vagrant suspend`
+	vagrant suspend
 
 ### 仮想マシンの破棄
 
 破棄するとCentOSが初期化される。また`vagrant up`すると立ち上がる。
 
-`vagrant destroy`
+	vagrant destroy
 
 ### 仮想マシンへ接続
 
-`vagrant ssh`
+	vagrant ssh
 
 ### ホストオンリーアダプターの設定
 動作確認のためIPアドレスを設定します。そのためのNICを追加します。
 
-`vi Vagrantfile`で
+	vi Vagrantfile  で
 
-`config.vm.box = "CentOS7"`の下に`config.vm.network "private_network", ip:"192.168.56.129"`
+	config.vm.box = "CentOS7"`の下に`config.vm.network "private_network", ip:"192.168.56.129"
+
 
 ※　複数台の仮想マシンを立ち上げる時には異なるIPアドレスを割り当てる必要があります。 ### Vagrantfileの反映
 Vagrantfileで変更した設定を反映させるには
 
-`vagrant reload`
+	vagrant reload
 
 で再起動して反映されるから注意。
 
@@ -80,107 +82,114 @@ Vagrantfileで変更した設定を反映させるには
 
 yum使えるように設定する。
 
-`sudo vi /etc/yum.conf`のどこかに`proxy=http://Proxyサーバーアドレス:ポート番号`
+	sudo vi /etc/yum.conf`のどこかに`proxy=http://Proxyサーバーアドレス:ポート番号
 
-を入力して`sudo yum update`でアップデートする。
+を入力して	sudo yum update
+でアップデートする。
 
-`sudo yum -y install epel-release`でepelリポジトリインストール
+	sudo yum -y install epel-release
+	でepelリポジトリインストール
 
-`sudo vi /etc/yum.repos.d/epel.repo`で「--enablerepo」で指定しなければ「epel」リポジトリを使えない設定にしておく。
+	sudo vi /etc/yum.repos.d/epel.repo
+で「--enablerepo」で指定しなければ「epel」リポジトリを使えない設定にしておく。
 
 [epel]部分の「enabled=1」を「enabled=0」に変更。
 
 ### nginxインストール
-`sudo yum install --enablerepo=epel nginx`
+
+	sudo yum install --enablerepo=epel nginx
 
 ### phpのインストール
-`sudo yum -y install --enablerepo=remi,remi-php70 php php-devel php-mbstring php-pdo php-gd php-mysql php-pear php-fpm php-mcrypt`
+
+	sudo yum -y install --enablerepo=remi,remi-php70 php php-devel php-mbstring php-pdo php-gd php-mysql php-pear php-fpm php-mcrypt
 
 ついでに、php-fpmもインストール
 
 ### /etc/php-fpm.d/www.confの編集
+
 apacheになってるところをnginxに変更
 
-'
-  user = nginx
+
+	  user = nginx
   grounp = nginx
-'
+
 
 
 ### php-fpmの起動をサービス化
 起動
 
-`sudo service php-fpm start`
+	sudo service php-fpm start
 
 サービス化
 
-`sudo chkconfig php-fpm on`
+	sudo chkconfig php-fpm on
 
 ### MariaDBのインストール
-`sudo yum -y install mariadb mariadb-server`でインストール
+	sudo yum -y install mariadb mariadb-server`でインストール
 
-`sudo rpm -qa | grep maria`で確認
+	sudo rpm -qa | grep maria  で確認
 
 ### MariaDBの有効化と起動
 
-`sudo systemctl enable mariadb-service`で有効にする。
+	sudo systemctl enable mariadb-service  で有効にする。
 
-`sudo systemctl start mariadb-service`で起動
+	sudo systemctl start mariadb-service  で起動
 
 ### MariaDBの初期設定
-`mysql_secure_installation`
+
+	mysql_secure_installation
 
 とりあえずMariaDBを再起動
 
-`sudo systemctl restart mariadb`
+	sudo systemctl restart mariadb
 
 ### MariaDBクライアントの利用
 
-`$ mysql -u root -p`
+	$ mysql -u root -p
 
-`MariaDB> CREATE DATABASE databasename;`
+	MariaDB> CREATE DATABASE databasename;
 
-`GRANT ALL PRIVILEGES ON databasename.* TO "username"@"hostname" IDENTIFIED BY "password";`
+	GRANT ALL PRIVILEGES ON databasename.* TO "username"@"hostname" IDENTIFIED BY "password";
 
-`FLUSH PRIVILEGES;`
+	FLUSH PRIVILEGES;
 
-`exit`
+	exit
 
 # Wordpressのダウンロード
 
-`wget http://wordpress.org/latest.tar.gz`でダウンロードしてくる
+	wget http://wordpress.org/latest.tar.gz  でダウンロードしてくる
 
-`tar xzfv latest.tar.gz`で展開
+	tar xzfv latest.tar.gz  で展開
 
 chownで所有者とグループをnginxに変える
 
-`sudo chown -R nginx:nginx wordpress`で変えたら
+	sudo chown -R nginx:nginx wordpress  で変えたら
 
 wordpress/を/var/www/の下に移動させる
 
-`sudo mv wordpress/ /var/www/`
+	sudo mv wordpress/ /var/www/
 
 ### wp-confing.phpの設定ファイルを編集
 
-`cd /var/www/wordpress`
+	cd /var/www/wordpress
 
-`sudo cp wp-confing.sample.php wp-confing.php`でコピーしたwp-confing.phpを編集。MariaDBで作ったデータベースのデータを入力。
+	sudo cp wp-confing.sample.php wp-confing.php  でコピーしたwp-confing.phpを編集。MariaDBで作ったデータベースのデータを入力。
 
 認証用ユニークキーをオンラインジェネレーターで作成し値を入力する。
 
 ### default.confの中身を変更
 
-`vi /etc/nginx/conf.d/default.conf`
+	vi /etc/nginx/conf.d/default.conf
 
-`root /var/www/wordpress` に変更
+	root /var/www/wordpress  に変更
 
-`fastcgi_param SCRIPT_FILENAME`と`$fastcgi_script_name`の間に`$document_root`を入力。
+	fastcgi_param SCRIPT_FILENAME  と	$fastcgi_script_name  の間に	$document_root  を入力。
 
-変更したら`nginx -t`でチェックして
+変更したら	nginx -t  でチェックして
 
 nginxを再起動
 
-`sudo systemctl restart nginx`
+	sudo systemctl restart nginx
 
 ### Wordpress インストール
 
@@ -194,28 +203,28 @@ nginxを再起動
 
 #### ダウンロード
 
-`wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/httpd/httpd-2.2.31.tar.gz`
+	wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/httpd/httpd-2.2.31.tar.gz
 
 #### 展開
 
-`tar -xvf httpd-2.2.31.tar.gz`
+	tar -xvf httpd-2.2.31.tar.gz
 
 #### Makefileを作成
 
 ソースファイルをコンパイルする前に、インストール対象となるシステム特有の機能
 情報をチェックし、チェック状況を記述したMakefileを作成する。
 
-`./configure`
+	./configure
 
 #### ソースファイルのコンパイル
 
-`make`
+	make
 
 #### インストール(インストールは一般的にrootユーザーにて行う。)
 
 (make で作成したファイルなどを任意のディレクトリにコピー)を行う。
 
-`sudo make install`
+	sudo make install
 
 ### PHP7.0をダウンロード・インストール
 
@@ -223,81 +232,81 @@ nginxを再起動
 
 #### ダウンロード
 
-`$ wget http://jp2.php.net/get/php-7.0.0.tar.gz/from/this/mirror -O php-7.0.0.tar.gz`
+	$ wget http://jp2.php.net/get/php-7.0.0.tar.gz/from/this/mirror -O php-7.0.0.tar.gz
 
 #### 展開
 
-`tar zxvf php-7.0.0.tar.gz`
+	tar zxvf php-7.0.0.tar.gz
 
 #### Makefileを作成
 
-`$ ./configure`
+	$ ./configure
 
 #### ソースファイルのコンパイル
 
-`$ make`
+	$ make
 
 #### インストール
 
-`$ sudo make install`
+	$ sudo make install
 
 ### Apacheの起動
 
-`sudo /usr/local/apache2/bin/apachectl start`
+	sudo /usr/local/apache2/bin/apachectl start
 
 ### MariaDBのインストール
-`sudo rmp --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB`
-`sudo yum -y install mariadb mariadb-server mariadb-client mariadb-devel`
-`rpm -qa | grep maria`で確認
-`sudo rpm -e --nodeps mysql-libs`
-`sudo systemctl enable mariadb.service`
-`sudo systemctl startn mariadb.service`
+	sudo rmp --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+	sudo yum -y install mariadb mariadb-server mariadb-client mariadb-devel
+	rpm -qa | grep maria  で確認
+	sudo rpm -e --nodeps mysql-libs
+	sudo systemctl enable mariadb.service
+	sudo systemctl startn mariadb.service
 
 #### MariaDBの初期設定
 
-`mysql_secure_installation`でrootのパスワードを設定する。
+	mysql_secure_installation  でrootのパスワードを設定する。
 
 #### MariaDBでユーザー作成
 
-`mysql -u root -p`
-`create database databasename;`
-`grant all privileges on databasename.* to "username"@"localhost" identified by "password";`
-`flush privileges;`
-`exit;`
+	mysql -u root -p
+	create database databasename;
+	grant all privileges on databasename.* to "username"@"localhost" identified by "password";
+	flush privileges;
+	exit;
 
 ### Wordpressのダウンロード・インストール
 
 #### ダウンロード
 
-`$ wget http://wordpress.org/latest.tar.gz`
+	$ wget http://wordpress.org/latest.tar.gz
 
 #### 展開・移動
 
-`$ tar -xvf latest.tar.gz`
+	$ tar -xvf latest.tar.gz
 
-`$ mv latest.tar.gz /var/www/`に移動
+	$ mv latest.tar.gz /var/www/  に移動
 
 #### wp-confing.phpの設定ファイルを編集
 
-`cd /var/www/wordpress`
+	cd /var/www/wordpress
 
-`sudo cp wp-confing.sample.php wp-confing.php`でコピーしたwp-confing.phpを編集。MariaDBで作ったデータベースのデータを入力。
+	sudo cp wp-confing.sample.php wp-confing.php  でコピーしたwp-confing.phpを編集。MariaDBで作ったデータベースのデータを入力。
 
 認証用ユニークキーをオンラインジェネレーターで作成し値を入力する。
 
 ### default.confの中身を変更
 
-`vi /etc/nginx/conf.d/default.conf`
+	vi /etc/nginx/conf.d/default.conf
 
-`root /var/www/wordpress`に変更
+	root /var/www/wordpress  に変更
 
-`fastcgi_param SCRIPT_FILENAME`と`$fastcgi_script_name`の間に`$document_root`を入力。
+	fastcgi_param SCRIPT_FILENAME  と	$fastcgi_script_name  の間に	$document_root  を入力。
 
-変更したら`nginx -t`でチェックして
+変更したら	nginx -t  でチェックして
 
 #### nginxを再起動
 
-`sudo systemctl restart nginx`
+	sudo systemctl restart nginx
 
 ### Wordpress インストール
 
