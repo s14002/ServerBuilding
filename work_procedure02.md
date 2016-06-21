@@ -389,9 +389,13 @@ Ubuntuにabコマンドインストール
 		      Total:        168  168   0.0    168     168
 
 ### PageSpeed
+
 Google Chromeに[PageSpeed](https://goo.gl/EA11zq)の拡張機能を入れる。
+
 自分のWordpressのページのDeveloper tools>PageSpeed>REFRESH RESULTSをクリックしてベンチマークを取る。
+
 192.168.56.129の結果はPage Speed Score: 81/100 でした。
+
 192.168.56.130の結果はPage Speed Score: 77/100 でした。
 
 
@@ -411,4 +415,6 @@ wgetでWP Super Cacheを取ってくる
 
 	unzip wp-super-cache.1.4.zip
 
-ブラウザからWordpressの192.168.56.130の結果は  Page Speed Score: 66/100に変わった。(まさかの下がった)
+ブラウザからWordpressの192.168.56.130の結果は
+
+Page Speed Score: 66/100に変わった。(まさかの下がった)
