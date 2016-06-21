@@ -302,12 +302,61 @@ nginxを再起動
 
 	fastcgi_param SCRIPT_FILENAME  と	$fastcgi_script_name  の間に	$document_root  を入力。
 
-変更したら	nginx -t  でチェックして
+#### apacheを再起動
 
-#### nginxを再起動
-
-	sudo systemctl restart nginx
+	 $ sudo /usr/local/apache2/bin/apachectl restart
 
 ### Wordpress インストール
 
 ブラウザのURLに192.168.56.130/wp-admin/install.phpを入力してWordpressをインストールする。
+
+## 2-4 ベンチマークを取る
+
+### abコマンド
+Ubuntuにabコマンドインストール
+
+	$ sudo apt isntall apache2-utils
+
+	$ sudo apt install netatalk
+
+	ab -n 1000 -c 8  http://IPアドレス/
+
+	This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
+	Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+	Licensed to The Apache Software Foundation, http://www.apache.org/
+
+	Benchmarking 192.168.56.130 (be patient).....done
+
+
+	Server Software:        Apache/2.2.31
+	Server Hostname:        192.168.56.130
+	Server Port:            80
+
+	Document Path:          /
+	Document Length:        10643 bytes
+
+	Concurrency Level:      1
+	Time taken for tests:   0.168 seconds
+	Complete requests:      1
+	Failed requests:        0
+	Total transferred:      10889 bytes
+	HTML transferred:       10643 bytes
+	Requests per second:    5.97 [#/sec] (mean)
+	Time per request:       167.642 [ms] (mean)
+	Time per request:       167.642 [ms] (mean, across all concurrent requests)
+	Transfer rate:          63.43 [Kbytes/sec] received
+
+	Connection Times (ms)
+	              min  mean[+/-sd] median   max
+		      Connect:        0    0   0.0      0       0
+		      Processing:   167  167   0.0    167     167
+		      Waiting:      159  159   0.0    159     159
+		      Total:        168  168   0.0    168     168
+
+### PageSpeed
+Google Chromeに[PageSpeed](https://goo.gl/EA11zq)の拡張機能を入れる。
+自分のWordpressのページのDeveloper tools>PageSpeed>REFRESH RESULTSをクリックしてベンチマークを取る。
+Page Speed Score: 77/100　でした。
+
+## Wordpressの高速化
+
