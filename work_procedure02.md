@@ -315,7 +315,7 @@ nginxを再起動
 ### abコマンド
 Ubuntuにabコマンドインストール
 
-	$ sudo apt isntall apache2-utils
+	$ sudo apt install apache2-utils
 
 	$ sudo apt install netatalk
 
@@ -354,6 +354,7 @@ Ubuntuにabコマンドインストール
 		      Total:        182  182   0.0    182     182
 
 
+2-2と2-3のWordpressを比較する。
 
 	This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
 	Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
