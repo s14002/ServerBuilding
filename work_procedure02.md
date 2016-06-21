@@ -319,7 +319,41 @@ Ubuntuにabコマンドインストール
 
 	$ sudo apt install netatalk
 
-	ab -n 1000 -c 8  http://IPアドレス/
+	$ ab -n 1000 -c 8  http://IPアドレス/
+
+	This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
+	Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+	Licensed to The Apache Software Foundation, http://www.apache.org/
+
+	Benchmarking 192.168.56.129 (be patient).....done
+
+
+	Server Software:        nginx/1.6.3
+	Server Hostname:        192.168.56.129
+	Server Port:            80
+
+	Document Path:          /
+	Document Length:        10371 bytes
+
+	Concurrency Level:      1
+	Time taken for tests:   0.182 seconds
+	Complete requests:      1
+	Failed requests:        0
+	Total transferred:      10603 bytes
+	HTML transferred:       10371 bytes
+	Requests per second:    5.49 [#/sec] (mean)
+	Time per request:       182.143 [ms] (mean)
+	Time per request:       182.143 [ms] (mean, across all concurrent requests)
+	Transfer rate:          56.85 [Kbytes/sec] received
+
+	Connection Times (ms)
+	              min  mean[+/-sd] median   max
+		      Connect:        0    0   0.0      0       0
+		      Processing:   182  182   0.0    182     182
+		      Waiting:      176  176   0.0    176     176
+		      Total:        182  182   0.0    182     182
+
+
 
 	This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
 	Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -356,7 +390,7 @@ Ubuntuにabコマンドインストール
 ### PageSpeed
 Google Chromeに[PageSpeed](https://goo.gl/EA11zq)の拡張機能を入れる。
 自分のWordpressのページのDeveloper tools>PageSpeed>REFRESH RESULTSをクリックしてベンチマークを取る。
-Page Speed Score: 77/100　でした。
+結果はPage Speed Score: 77/100　でした。
 
 ## Wordpressの高速化
 
