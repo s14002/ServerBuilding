@@ -33,6 +33,7 @@ Syntaxを確認
 	$ ansible-playbook -i hosts playbook.yml --syntax-check
 
 playbookを実行する。
+
 	$ ansible-playbook playbook.yml -i hosts --private-key ~/.vagrant.d/insecure_private_key -u vagrant -k
 
 エラーの場合
