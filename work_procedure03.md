@@ -15,6 +15,7 @@
 VagrantfileからAnsibleを実行することもできますが、最初は普通に使用することをおすすめします。
 
 echoを使ってhostsファイルに自分のサーバーのIPアドレスを記述する。
+
 	$ echo IPアドレス > hosts
 
 pingで確認。
