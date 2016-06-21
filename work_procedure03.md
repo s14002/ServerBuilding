@@ -2,6 +2,7 @@
 
 ## 3-0 Ansibleのインストール
 [公式サイト](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu)
+
 	$sudo apt-get install spftware-properties-common
 	$sudo apt-add-repository ppa:ansible/ansible
 	$sudo apt-get update
